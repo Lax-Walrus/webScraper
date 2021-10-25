@@ -5,12 +5,13 @@ const PORT = 8080;
 
 const app = express();
 
-axios("https://www.cnn.com/")
+axios("https://abcnews.go.com/")
   .then((response) => {
     const html = response.data;
     const $ = cheerio.load(html);
     const articles = [];
-    $(`.cd__headline`, html).each(function () {
+
+    $(`.ContentList__Item`, html).each(function () {
       const title = $(this).text();
       const url = $(this).find("a").attr("href");
       console.log(title);
